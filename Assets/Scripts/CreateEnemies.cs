@@ -7,19 +7,26 @@ public class CreateEnemies : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform enemyTransform;
 
-    public EnemyCreator[] enemies;
+    public EnemyCreator enemies;
 
-    public Enemy[] enemy;
+    public List<Enemy> enemy = new List<Enemy>(10);
+    float range = 1f;
+    Vector3 pos;
     void Start()
     {
-        for (int i=0; i<10; ++i)
+        pos = enemyTransform.position;
+        enemies = new StandartEnemyCreator();
+        for (int i=0; i < enemy.Capacity; ++i)
         {
-            enemies[i] = new StandartEnemyCreator();
-            enemy[i] = enemies[i].EnemyCreate();
-            enemy[i].transform.position = new Vector3(enemy[i].transform.position.x + 30 * i,enemy[i].transform.position.y, enemy[i].transform.position.z);
-            enemy[i].enemyCreateShot(enemyPrefab, enemyTransform);
+            enemy.Add(enemies.EnemyCreate());   
+            
         }
-      
+      foreach(var en in enemy)
+        {
+            en.enemyCreateShot(enemyPrefab, pos, enemyPrefab.transform.rotation);
+            pos = new Vector3(pos.x+range,pos.y);
+            
+        }
     }
 
 }

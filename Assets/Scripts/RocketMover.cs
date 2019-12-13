@@ -37,6 +37,11 @@ public class RocketMover : MonoBehaviour
             rb.angularVelocity = -rotateAmount * rotateSpeed;
             rb.velocity = transform.up * speed;
         }
+        else
+        {
+            rb.angularVelocity = 0;
+            rb.velocity = transform.up * speed;
+        }
     }
     private void OnTriggerEnter2D(Collider2D hitted)
     {
@@ -45,7 +50,7 @@ public class RocketMover : MonoBehaviour
 
             
             GameObject exp = Instantiate(rocketExplosion,hitted.transform.position,hitted.transform.rotation);
-            hitted.gameObject.GetComponent<GetDamage>().getDamage(Guns.Rockets.damage);
+            hitted.gameObject.GetComponent<GetDamage>().getDamage(Guns.Rockets.damage,hitted.gameObject);
             Destroy(exp, 1);
             Destroy(this.gameObject);
             

@@ -3,16 +3,16 @@
 public abstract class Enemy : MonoBehaviour
 {
     protected virtual float hp { get; set; }
-    public abstract void enemyCreateShot(GameObject enemyPrefab, Transform enemyPos);
+    public abstract void enemyCreateShot(GameObject enemyPrefab, Vector3 enemyPos, Quaternion enemyQuat);
    
 }
 public class StandartEnemy : Enemy
 {
     protected override float hp { get; set; } = 110f;
-    public override void enemyCreateShot(GameObject enemyPrefab, Transform enemyPos)
+    public override void enemyCreateShot(GameObject enemyPrefab, Vector3 enemyPos, Quaternion enemyQuat)
     {
 
-        Instantiate(enemyPrefab, enemyPos);
+        Instantiate(enemyPrefab, enemyPos,enemyQuat);
     }
 }
 
