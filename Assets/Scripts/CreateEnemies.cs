@@ -23,10 +23,11 @@ public class CreateEnemies : MonoBehaviour
         }
       foreach(var en in enemy)
         {
-            en.enemyCreateShot(enemyPrefab, pos, enemyPrefab.transform.rotation);
+            en.enemySpawn(enemyPrefab, pos, enemyPrefab.transform.rotation);
             pos = new Vector3(pos.x+range,pos.y);
             
         }
     }
 
+ 
 }

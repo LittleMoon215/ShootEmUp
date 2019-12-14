@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Player : Ship
 {
-    public static int shipType = 0;
+    public static int shipType = 2;
 
     
     public float fireRate;
     private float fireTime=0;
     public Transform shotPosition;
     public GameObject shotPrefab;
-    Guns.Rockets rocket;
     private void Start()
     {
         this.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Ships")[shipType];
@@ -41,10 +40,20 @@ public class Player : Ship
         if (Time.time > fireTime)
         {
             fireTime = Time.time + fireRate;
-            rocket = new Guns.Rockets(shotPrefab,shotPosition);
+            Rockets rocket = new Rockets();
+            rocket.Shoot(shotPrefab,shotPosition);
+            
             
         }
         
         
+    }
+    public void playerGetDamage(float damage)
+    {
+        hp -= damage;
+        if(hp<=0)
+        {
+            Debug.Log("TEBE PIZDA");
+        }
     }
 }

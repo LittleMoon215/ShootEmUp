@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 
-public class Guns : MonoBehaviour
+public abstract class Guns : MonoBehaviour
 {
-    public class Rockets : Guns
+    public virtual float damage { get; set; } = 100f;
+    public void Shoot(GameObject shotPrefab, Transform shotPosition)
     {
-
-        public static float damage = 100f;
-        public Rockets(GameObject shotPrefab, Transform shotPosition)
-        {
-           
-            Instantiate(shotPrefab, shotPosition.position, shotPosition.rotation);
-            
-        }
-        
+        Instantiate(shotPrefab, shotPosition.position, shotPosition.rotation);
     }
-    public class FireArm : Guns
-    {
 
-    }
-    public class Laser : Guns
-    {
 
-    }
 }
+public class Rockets : Guns
+{
+    public override float damage { get => base.damage; set => base.damage = value; }
+}
+public class FireArm : Guns
+{
+    public override float damage { get => base.damage; set => base.damage = 50f; }
+}
+public class Laser : Guns
+{
+    public override float damage { get => base.damage; set => base.damage = 300f; }
+}
+    

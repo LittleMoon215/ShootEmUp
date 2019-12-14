@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ship : Guns
 {
-    public int hp = 100;
+    public float hp = 100f;
     protected enum E_shotType { Rocket, Laser, Bullet };
     public float speed = 10f;
 

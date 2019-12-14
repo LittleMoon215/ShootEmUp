@@ -9,5 +9,6 @@ public class Destroyer : MonoBehaviour
     {
         if(collision.gameObject.tag == "PlayerShot" || collision.gameObject.tag == "EnemyShot")
         Destroy(collision.gameObject);
+        
     }
 }
