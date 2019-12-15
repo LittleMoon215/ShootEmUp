@@ -3,14 +3,14 @@ using UnityEngine;
 public class EnemyShotMover : MonoBehaviour
 {
     float speed = 9f;
-
+    public float damage = 10f;
     Vector3 player;
     Rigidbody2D rb;
-    Enemy a;
+    
     public GameObject explosionPrefab;
     void Start()
     {
-        a = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CreateEnemies>().enemy[0];
+        
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform.position;
         Vector2 newDirection = (player - transform.position);
@@ -29,7 +29,7 @@ public class EnemyShotMover : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Player>().playerGetDamage(a.damage);
+            collision.gameObject.GetComponent<Player>().playerGetDamage(damage);
             Destroy(this.gameObject);
             GameObject exp = Instantiate(explosionPrefab, collision.transform.position, collision.transform.rotation);
             Destroy(exp, 1);

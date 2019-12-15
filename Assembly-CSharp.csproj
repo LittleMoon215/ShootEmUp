@@ -64,13 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BGMove.cs" />
+    <Compile Include="Assets\Scripts\BossShooting.cs" />
     <Compile Include="Assets\Scripts\ButtonsScripts.cs" />
     <Compile Include="Assets\Scripts\ChooseShip.cs" />
     <Compile Include="Assets\Scripts\CreateEnemies.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\EnemyObj.cs" />
     <Compile Include="Assets\Scripts\EnemyShotMover.cs" />
-    <Compile Include="Assets\Scripts\GetDamage.cs" />
     <Compile Include="Assets\Scripts\Guns.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\RocketMover.cs" />

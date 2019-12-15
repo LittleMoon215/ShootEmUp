@@ -25,6 +25,7 @@ public class RocketMover : MonoBehaviour
         catch (NullReferenceException)
         {
             rb.velocity = transform.up * speed;
+            
         }
 
 
@@ -58,7 +59,7 @@ public class RocketMover : MonoBehaviour
         if (hitted.tag == "Enemy")
         {
             GameObject exp = Instantiate(rocketExplosion, hitted.transform.position, hitted.transform.rotation);
-            hitted.gameObject.GetComponent<GetDamage>().getDamage(new Rockets().damage, hitted.gameObject);
+            hitted.gameObject.GetComponent<EnemyObj>().getDamage(new Rockets().damage, hitted.gameObject);
             Destroy(exp, 1);
             Destroy(this.gameObject);
         }
