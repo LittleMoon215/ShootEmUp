@@ -2,24 +2,53 @@
 
 public abstract class Guns : MonoBehaviour
 {
-    public virtual float damage { get; set; } = 100f;
-    public void Shoot(GameObject shotPrefab, Transform shotPosition)
-    {
-        Instantiate(shotPrefab, shotPosition.position, shotPosition.rotation);
-    }
+    protected virtual float fireRate { get; set; }
+    protected virtual float speed { get; set; }
+    protected virtual float damage { get; set; } = 100f;
+    public float getFireRate() { return fireRate; }
+    public float getDamage() { return damage; }
+    public float getSpeed() { return speed; }
+    public abstract void Shoot(GameObject shotPrefab, Transform shotPosition);
+    
 
 
 }
 public class Rockets : Guns
 {
-    public override float damage { get => base.damage; set => base.damage = value; }
+    protected override float fireRate { get; set; } = 1.5f;
+    protected override float speed { get; set; } = 6f;
+
+    protected float rotateSpeed { get; set; } = 300f;
+    public float getRotateSpeed() { return rotateSpeed; }
+    protected override float damage { get => base.damage; set => base.damage = value; }
+    public override void Shoot(GameObject shotPrefab, Transform shotPosition)
+    {
+        
+            Instantiate(shotPrefab, shotPosition.position, shotPosition.rotation);
+        
+    }
 }
 public class FireArm : Guns
 {
-    public override float damage { get => base.damage; set => base.damage = 50f; }
+    protected override float fireRate { get; set; } = 0.5f;
+    protected override float speed { get; set; } = 15f;
+    protected override float damage { get => base.damage; set => base.damage = 50f; }
+    public override void Shoot(GameObject shotPrefab, Transform shotPosition)
+    {
+
+        Instantiate(shotPrefab, shotPosition.position, shotPosition.rotation);
+
+    }
 }
 public class Laser : Guns
 {
-    public override float damage { get => base.damage; set => base.damage = 300f; }
+    protected override float fireRate { get; set; } = 5f;
+    protected override float damage { get => base.damage; set => base.damage = 300f; }
+    public override void Shoot(GameObject shotPrefab, Transform shotPosition)
+    {
+
+        Instantiate(shotPrefab, shotPosition.position, shotPosition.rotation);
+
+    }
 }
     

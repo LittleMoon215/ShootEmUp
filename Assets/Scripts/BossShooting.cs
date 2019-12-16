@@ -24,7 +24,7 @@ public class BossShooting : MonoBehaviour
         {
             collision.gameObject.GetComponent<Player>().playerGetDamage(damage);
             Destroy(this.gameObject);
-            GameObject exp = Instantiate(explosionPrefab, collision.transform.position, collision.transform.rotation);
+            GameObject exp = Instantiate(explosionPrefab, this.transform.position, this.transform.rotation);
             Destroy(exp, 1);
         }
     }

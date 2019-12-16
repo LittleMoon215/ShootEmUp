@@ -4,7 +4,7 @@ using System;
 
 public class CreateEnemies : MonoBehaviour
 {
-    const int number = 2;
+    const int number = 4;
     public GameObject enemyPrefab;
     public Transform enemySpawner;
     public GameObject catEnemyPrefab;
@@ -20,7 +20,7 @@ public class CreateEnemies : MonoBehaviour
         pos = enemySpawner.position;
         standartEnemyCreator = new StandartEnemyCreator();
         catEnemyCreator = new CatEnemyCreator();
-        for (int i = 0; i < 1; ++i)
+        for (int i = 0; i < number; ++i)
         {
             if (i % 2 == 0)
                 enemy.Add(standartEnemyCreator.EnemyCreate());

@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BGMove.cs" />
     <Compile Include="Assets\Scripts\BossShooting.cs" />
+    <Compile Include="Assets\Scripts\BulletMover.cs" />
     <Compile Include="Assets\Scripts\ButtonsScripts.cs" />
     <Compile Include="Assets\Scripts\ChooseShip.cs" />
     <Compile Include="Assets\Scripts\CreateEnemies.cs" />

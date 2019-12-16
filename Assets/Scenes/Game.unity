@@ -316,7 +316,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 2138789679}
   catEnemyPrefab: {fileID: 6239239998670414688, guid: 8d751dd234898fa4fb8255d540cf04c8,
     type: 3}
-  bossEnemyPrefab: {fileID: 4093297950768427892, guid: 705a6294e69e0234096495ee0df219d3,
+  bossEnemyPrefab: {fileID: 5827327401290035204, guid: 469e423897599b842bd95ecef9e657c3,
     type: 3}
   enemy: []
 --- !u!20 &519420031
@@ -1111,10 +1111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   speed: 4
-  fireRate: 1.5
   shotPosition: {fileID: 1900303267}
-  shotPrefab: {fileID: 1309517354423377603, guid: fff42f92f948ec24a8812939a5bd7a2f,
-    type: 3}
 --- !u!212 &1802576974
 SpriteRenderer:
   m_ObjectHideFlags: 0
