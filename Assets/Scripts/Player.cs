@@ -2,7 +2,7 @@
 
 public class Player : Ship
 {
-    public static int shipType = 2;
+    public static int shipType = 1;
     Rockets rocket;
     FireArm fireArm;
 
@@ -14,6 +14,18 @@ public class Player : Ship
     {
         this.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Ships")[shipType];
         this.GetComponent<BoxCollider2D>().size = this.GetComponent<SpriteRenderer>().sprite.bounds.size;
+        switch(shipType)
+        {
+            case 0:
+                startType = E_shotType.Laser;
+                break;
+            case 1:
+                startType = E_shotType.Bullet;
+                break;
+            case 2:
+                startType = E_shotType.Rocket;
+                break;
+        }
         rocket = new Rockets();
         fireArm = new FireArm();
     }

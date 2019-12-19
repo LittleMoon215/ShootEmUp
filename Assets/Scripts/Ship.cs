@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     public float hp = 100f;
-    protected enum E_shotType { Rocket, Laser, Bullet };
+    public enum E_shotType { Rocket, Laser, Bullet };
     public float speed = 10f;
-
+    public E_shotType startType;
 }
