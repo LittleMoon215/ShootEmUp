@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class UpgradeButtons : MonoBehaviour
 {
     public Button ALL;
@@ -28,7 +28,7 @@ public class UpgradeButtons : MonoBehaviour
         HP1.interactable = false;
         HP1.colors = colors;
         HP2.interactable = true;
-       // Ship.hp = hp * 1.2;
+       // Ship.hp *= 1.2f;
     }
     public void HP2Pressed()
     {
@@ -68,4 +68,6 @@ public class UpgradeButtons : MonoBehaviour
         GOD.interactable = false;
         GOD.colors = colors;
     }
+    public void OnExitPressed() => SceneManager.LoadScene("Game");
+
 }

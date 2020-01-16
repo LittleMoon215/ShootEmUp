@@ -30,7 +30,8 @@ public class Player : Ship
                 hp = 300f;
                 laser = new Laser();
                 break;
-        }  
+        }
+       
     }
 
     private void FixedUpdate()
