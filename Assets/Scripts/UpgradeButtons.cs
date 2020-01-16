@@ -28,7 +28,7 @@ public class UpgradeButtons : MonoBehaviour
         HP1.interactable = false;
         HP1.colors = colors;
         HP2.interactable = true;
-        Ship.hp = hp * 1.2;
+       // Ship.hp = hp * 1.2;
     }
     public void HP2Pressed()
     {
