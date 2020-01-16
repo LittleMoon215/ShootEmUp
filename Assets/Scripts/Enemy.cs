@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
-    public enum ENEMY_TYPE { STANDART_ENEMY = 0, CAT_ENEMY, BOSS_ENEMY }
+    public enum ENEMY_TYPE { STANDART_ENEMY = 0, CAT_ENEMY, CROOK_ENEMY, BOSS_ENEMY }
     protected virtual float hp { get; set; }
     public virtual ENEMY_TYPE type { get; protected set; }
      
@@ -59,6 +59,31 @@ public class CatEnemy : Enemy
             Destroy(go);
         }
         
+    }
+}
+public class CrookEnemy : Enemy
+{
+    public override ENEMY_TYPE type { get; protected set; } = ENEMY_TYPE.CROOK_ENEMY;
+    protected override float hp { get; set; } = 500f;
+    public override void enemySpawn(GameObject enemyPrefab, Vector3 enemyPos, Quaternion enemyQuat)
+    {
+        Instantiate(enemyPrefab, enemyPos, enemyQuat);
+    }
+    public override void enemyShoot(GameObject enemyShotPrefab, Vector2 shootPos, Quaternion shootRotation)
+    {
+
+        Instantiate(enemyShotPrefab, shootPos, shootRotation);
+
+    }
+    public override void getDamage(float damage, GameObject go)
+    {
+
+        hp -= damage;
+        if (hp <= 0)
+        {
+            Destroy(go);
+        }
+
     }
 }
 public class BossEnemy : Enemy
@@ -120,6 +145,13 @@ public class CatEnemyCreator : EnemyCreator
     public override Enemy EnemyCreate()
     {
         return new CatEnemy();
+    }
+}
+public class CrookEnemyCreator : EnemyCreator
+{
+    public override Enemy EnemyCreate()
+    {
+        return new CrookEnemy();
     }
 }
 public class BossEnemyCreator : EnemyCreator

@@ -23,6 +23,10 @@ public class EnemyObj : MonoBehaviour
                 thisEnemy = new CatEnemy();
                 
                 break;
+            case "EnemyCrook(Clone)":
+                thisEnemy = new CatEnemy();
+
+                break;
             case "EnemyCatBoss(Clone)":
                 thisEnemy = new BossEnemy();
                 

@@ -1,21 +1,36 @@
-﻿using UnityEngine;
-
+﻿using System.Collections;
+using UnityEngine;
 public class Player : Ship
 {
-    public static int shipType = 2;
+    public static int shipType = 1;
     Rockets rocket;
     FireArm fireArm;
-
+    Laser laser;
     private float rocketsFireTime = 0;
     private float fireArmFireTime = 0;
+    private float laserFireTime = 0;
     public Transform shotPosition;
-
+    public LineRenderer lineRenderer;
     private void Start()
     {
         this.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Ships")[shipType];
         this.GetComponent<BoxCollider2D>().size = this.GetComponent<SpriteRenderer>().sprite.bounds.size;
-        rocket = new Rockets();
-        fireArm = new FireArm();
+        switch(shipType)
+        {
+            case 0:
+                fireArm = new FireArm();
+                break;
+            case 1:
+                rocket = new Rockets();
+                speed = 6f;
+                hp = 550f;
+                break;
+            case 2:
+                speed = 6f;
+                hp = 300f;
+                laser = new Laser();
+                break;
+        }  
     }
 
     private void FixedUpdate()
@@ -38,24 +53,43 @@ public class Player : Ship
             transform.Translate(Vector2.down * Time.fixedDeltaTime * speed);
         }
 
-        if (Time.time > fireArmFireTime)
+        switch(shipType)
         {
-            fireArmFireTime = Time.time + fireArm.getFireRate();
-            fireArm.Shoot(Resources.Load<GameObject>("Prefabs/Bullet"), shotPosition);
-        }
-        if (Time.time > rocketsFireTime)
-        {
-            rocketsFireTime = Time.time + rocket.getFireRate();
-            fireArm.Shoot(Resources.Load<GameObject>("Prefabs/Rocket"), shotPosition);
+            case 0:
+                if (Time.time > fireArmFireTime)
+                {
+                    fireArmFireTime = Time.time + fireArm.getFireRate();
+                    fireArm.Shoot(Resources.Load<GameObject>("Prefabs/Bullet"), shotPosition);
+                }
+                break;
+            case 1:
+               
+                if (Time.time > rocketsFireTime)
+                {
+                    rocketsFireTime = Time.time + rocket.getFireRate();
+                    rocket.Shoot(Resources.Load<GameObject>("Prefabs/Rocket"), shotPosition);
+                }
+                break;
+            case 2:
+                if (Time.time > laserFireTime)
+                {
+                    laserFireTime = Time.time + laser.getFireRate();
+                    StartCoroutine(laser.Shoot(lineRenderer, shotPosition));
+                }
+                break;
+
         }
 
+        
+        
+        
     }
     public void playerGetDamage(float damage)
     {
         hp -= damage;
         if (hp <= 0)
         {
-            Debug.Log("TEBE PIZDA");
+            Debug.Log("ETOT PAREN' BYL IZ TEH");
         }
     }
 }
