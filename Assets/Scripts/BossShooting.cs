@@ -27,5 +27,11 @@ public class BossShooting : MonoBehaviour
             GameObject exp = Instantiate(explosionPrefab, this.transform.position, this.transform.rotation);
             Destroy(exp, 1);
         }
+        if (collision.gameObject.tag == "Shield")
+        {
+            Destroy(this.gameObject);
+            GameObject exp = Instantiate(explosionPrefab, this.transform.position, this.transform.rotation);
+            Destroy(exp, 1);
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 public abstract class Enemy : MonoBehaviour
 {
     public enum ENEMY_TYPE { STANDART_ENEMY = 0, CAT_ENEMY, CROOK_ENEMY, BOSS_ENEMY }
@@ -6,6 +8,7 @@ public abstract class Enemy : MonoBehaviour
     public virtual ENEMY_TYPE type { get; protected set; }
      
     public void setHp(float _hp) { hp = _hp; }
+    public float getHp() { return hp; }
     public abstract void getDamage(float damage, GameObject go);
 
     public abstract void enemySpawn(GameObject enemyPrefab, Vector3 enemyPos, Quaternion enemyQuat);
@@ -26,14 +29,18 @@ public class StandartEnemy : Enemy
     }
     public override void getDamage(float damage, GameObject go)
     {
-        
+
         hp -= damage;
         if (hp <= 0)
         {
+            Stats.XP += 100;
+            
+            //SceneManager.LoadScene("Upgrade");
             Destroy(go);
         }
-
+        
     }
+
 }
 
 public class CatEnemy : Enemy
@@ -56,6 +63,8 @@ public class CatEnemy : Enemy
         hp -= damage;
         if (hp <= 0)
         {
+            Stats.XP += 100;
+            //SceneManager.LoadScene("Upgrade");
             Destroy(go);
         }
         
@@ -81,9 +90,12 @@ public class CrookEnemy : Enemy
         hp -= damage;
         if (hp <= 0)
         {
+            Stats.XP += 100;
+            //SceneManager.LoadScene("Upgrade");
             Destroy(go);
+            
         }
-
+        
     }
 }
 public class BossEnemy : Enemy
@@ -91,9 +103,12 @@ public class BossEnemy : Enemy
     Quaternion degree;
     public override ENEMY_TYPE type { get; protected set; } = ENEMY_TYPE.BOSS_ENEMY;
     protected override float hp { get; set; } = 6000f;
+    
+
     public override void enemySpawn(GameObject enemyPrefab, Vector3 enemyPos, Quaternion enemyQuat)
     {
         Instantiate(enemyPrefab, enemyPos, enemyQuat);
+        
     }
     public override void enemyShoot(GameObject enemyShotPrefabStage1, Vector2 shootPos, Quaternion shootRotation)
     {
@@ -119,13 +134,27 @@ public class BossEnemy : Enemy
     }
     public override void getDamage(float damage, GameObject go)
     {
+        float startHp = new BossEnemy().getHp();
+        Transform bar = GameObject.Find("BarBoss").GetComponent<Transform>();
 
         hp -= damage;
         if (hp <= 0)
         {
-            Destroy(go);
+            
+            Stats.XP += 500;
+           
+            
+            Destroy(go,1.5f);
         }
-        
+        if (hp > 0)
+        {
+            bar.localScale = new Vector3(hp / startHp, 1f);
+        }
+        else
+        {
+            bar.localScale = new Vector3(0f, 1f);
+        }
+
     }
 }
 public abstract class EnemyCreator

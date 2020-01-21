@@ -10,6 +10,7 @@ TagManager:
   - EnemyShot
   - Shot
   - Enemy
+  - Shield
   layers:
   - Default
   - TransparentFX

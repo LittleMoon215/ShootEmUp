@@ -4,7 +4,7 @@ public abstract class Guns : MonoBehaviour
 {
     protected virtual float fireRate { get; set; }
     protected virtual float speed { get; set; }
-    protected virtual float damage { get; set; } = 100f;
+    protected virtual float damage { get; set; }
     public float getFireRate() { return fireRate; }
     public float getDamage() { return damage; }
     public float getSpeed() { return speed; }
@@ -20,7 +20,7 @@ public class Rockets : Guns
 
     protected float rotateSpeed { get; set; } = 300f;
     public float getRotateSpeed() { return rotateSpeed; }
-    protected override float damage { get => base.damage; set => base.damage = value; }
+    protected override float damage { get; set; } = Stats.RocketDamage;
     public override void Shoot(GameObject shotPrefab, Transform shotPosition)
     {
 
@@ -32,7 +32,7 @@ public class FireArm : Guns
 {
     protected override float fireRate { get; set; } = 0.5f;
     protected override float speed { get; set; } = 15f;
-    protected override float damage { get => base.damage; set => base.damage = 50f; }
+    protected override float damage { get; set; } = Stats.FireArmDamage;
     public override void Shoot(GameObject shotPrefab, Transform shotPosition)
     {
 
@@ -44,7 +44,7 @@ public class Laser : Guns
 {
 
     protected override float fireRate { get; set; } = 5f;
-    protected override float damage { get => base.damage; set => base.damage = 300f; }
+    protected override float damage { get; set; } = Stats.LaserDamage;
     public override void Shoot(GameObject shotPrefab, Transform shotPosition)
     {
         ;

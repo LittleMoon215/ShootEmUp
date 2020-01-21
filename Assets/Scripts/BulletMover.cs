@@ -22,7 +22,9 @@ public class BulletMover : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            
             collision.gameObject.GetComponent<EnemyObj>().thisEnemy.getDamage(fireArm.getDamage(),collision.gameObject);
+            
             Destroy(this.gameObject);
             GameObject exp = Instantiate(explosionPrefab, this.transform.position, this.transform.rotation);
             Destroy(exp, 1);
